@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BigFood - Index</title>
+  <script src="index.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container-header">
+    <div class="header">
+      <div class="logo">
+        <img src="images/thumb_logo.png" alt="logo image" />
+      </div>
+      <div class="menu">
+        <div class="dropdown">
+          <button class="dropbtn" id="set-radius"><a href="/">Home Page</a></button>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn" id="set-a"><a href="onthemenu.html">On the menu</a></button>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn">Pricing</button>
+          <div class="dropdown-content">
+            <a href="#">Big Menu</a>
+            <a href="#">Child Menu</a>
+            <a href="#">Adult Menu</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn" id="set-a"><a href="register.html">Register</a></button>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn" id="set-radius-2"><a href="#">Contact Us</a></button>
+          <div class="dropdown-content">
+          </div>
+        </div>
+
+        <div class="account">
+          <img src="images/user.png" alt="login image" onclick="location.href='login.html';" />
+          <span class="tooltiptext">Login</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-user-info">
+    {{#if user}}
+    <ul>
+      <li>
+        <p>Logged in as {{FIRSTNAME}}{{LASTNAME}} -> </p>
+      </li>
+      {{#if CHECK}}
+      <li>
+        <p>Status: Admin</p>
+      </li>
+      {{else}}
+      <li>
+        <p>Status: User</p>
+      </li>
+      {{/if}}
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+    {{else}}
+    <ul>
+      <li>
+       <p>Status: Guest</p>
+      </li>
+    </ul>
+    {{/if}}
+  </div>
+
+  <div class="slider">
+    <img src="images/slider.jpg" alt="slider image" />
+    <div class="slider-text">
+      <h1>
+        Try BigFood With Quality Kit
+      </h1>
+      <p style="text-align: center;">Get 1 BigFood delicious Kit, and delivered for FREE to your doorstep.</p>
+      <a href="#">Explore</a>
+    </div>  
+  </div>
+
+  <div class="products">
+    <div class="container">
+      <div class="heading">
+        <h2>HOW IT WORKS</h2>        
+      </div>
+      <div class="product-item">
+      </div> 
+
+        <div class="piffor" style="text-align: left;">
+          <p>We have speacial coupons.</p>               
+        </div>
+        <div class="zabra" style="text-align: left;">
+              <p>Getting over $50 Bigfood Menu kit provides free breakfast coupon.
+              Buying one of the TOP 3 BigFood Menu gets you breakfast coupon.Buying one of the TOP 3 BigFood Menu gets you breakfast coupon.</p>                         
+        </div>         
+
+        <div class="tikkor" style="text-align: center;">
+          <p>Deliveries sends safely with safe Temperature.</p>
+        </div>
+        <div class="katro" style="text-align: center;">
+              <p>The food should be delivered as quickly as possible—ideally, overnight. Make sure perishable items and the outer package are labeled "Keep Refrigerated" to alert the recipient.</p>                         
+        </div> 
+
+        <div class="partoor" style="text-align: right;">
+          <p>You Choose your best preference for BigFood Menu</p>
+        </div>
+        <div class="metro" style="text-align: right;">
+              <p>If you keep good food in your Fridge, you wil eat good Food. Choose healthy, delicious meals each week that supports your preferences.</p>                         
+        </div>       
+      
+      
+    </div>
+    <div class="viewall-button">
+        <a href="#">View All Food Kits</a>
+      </div>
+    
+  </div>
+  
+  <div class="heading">
+        <h2>Top 3 BigFood</h2>
+      </div>
+  <div class="looter">
+      <img src="/images/meal1.jpg" alt="plate1" id="image1">
+      <div class="heading">
+        <p>Chicken & Turkey Thigts with Pickled Cranberries </p>        
+      </div> 
+      <div class="diffor">
+          <p>Candied yams & Pomegranate kale salad with spiced pecans</p>
+      </div> 
+      <div class="dropss">
+          <button class="button" id="set-a" style="text-align: right"><a href="">$49.99</a></button>
+        </div>
+  </div>
+  
+  <div class="looter">
+    <img src="/images/meal2.jpg" alt="plate2" id="imag21">
+    <div class="heading">
+        <p>Grilled and Sous Vide With Turkey</p>        
+      </div>
+      <div class="diffor">
+          <p>Cuban Sandwich & Salads with Mashed Potato Croquettes</p>
+      </div> 
+      <div class="dropss">
+          <button class="button" id="set-a" style="text-align: right"><a href="">$39.99</a></button>
+        </div>
+  </div>  
+  <div class="looter">
+    <img src="/images/meal3.jpg" alt="pla3e2" id="imag23">
+    <div class="heading" style="left:">
+        <p>Balsamic and honey roast Chicken,</p>        
+      </div>
+      <div class="diffor">
+          <p>Mashed Potatoes & Cranberry Sauce with Yam Sides</p>
+      </div> 
+      <div class="dropss">
+          <button class="button" id="set-a" style="text-align: right"><a href="">$69.99</a></button>
+        </div>
+  </div>  
+
+  <div class="banner">
+    <div class="container">
+      <h3>15% discount for families</h3>
+      <a href="#">SEE DETAILS</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-banner">
+      <div class="footer-text">
+        <h3>BigFOOD</h3>
+        <p>BigFood Restaurant</p>
+      </div>
+
+      <div class="footer-titles">
+        <ul>
+          <li><a href="#">Get Help</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Social Media</a></li>
+        </ul>
+      </div>
+      <p class="inc-rights">Copyright © Winter 2021, Emre Isik, WEB322NCC</p>
+    </div>
+  </div>
+</body>
+
+</html>

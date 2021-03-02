@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>BigFood - Onthemenu</title>
+  <script src="onthemenu.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container-header">
+    <div class="header">
+      <div class="logo">
+        <img src="images/thumb_logo.png" alt="logo image" onclick="location.href='/';" />
+      </div>
+      <div class="menu">
+        <div class="dropdown">
+          <button class="dropbtn" id="set-radius"><a href="/">Home Page</a></button>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn" id="set-a"><a href="onthemenu.html">On the menu</a></button>
+        </div>
+
+        <div class="dropdown">
+          <button class="dropbtn">Pricing</button>
+          <div class="dropdown-content">
+            <a href="#">Big Menu</a>
+            <a href="#">Child Menu</a>
+            <a href="#">Adult Menu</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn" id="set-a"><a href="register.html">Register</a></button>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn" id="set-radius-2"><a href="#">Contact Us</a></button>
+          <div class="dropdown-content">
+          </div>
+        </div>
+
+        <div class="account">
+          <img src="images/user.png" alt="login image" onclick="location.href='login.html';" />
+          <span class="tooltiptext">Login</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-user-info">
+    {{#if user}}
+    <ul>
+      <li>
+        <p>Logged in as {{FIRSTNAME}}{{LASTNAME}} -> </p>
+      </li>
+      {{#if CHECK}}
+      <li>
+        <p>Status: Admin</p>
+      </li>
+      {{else}}
+      <li>
+        <p>Status: User</p>
+      </li>
+      {{/if}}
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+    {{else}}
+    <ul>
+      <li>
+       <p>Status: Guest</p>
+      </li>
+    </ul>
+    {{/if}}
+  </div>
+
+  <img src="images/meal4.jpg" alt="logasss" />
+  <div class="products">
+    <div class="container">
+      <div class="heading">
+        <h2>Classic Meals</h2>
+      </div>
+      <div class="product-item"></div>
+      <div class="viewall-button">
+        <a href="#">List More</a>
+      </div>
+    </div>
+  </div>     
+
+  <div class="footer">
+    <div class="footer-banner">
+      <div class="footer-text">
+        <h3>BigFOOD</h3>
+        <p>BigFood Restaurant</p>
+      </div>
+
+      <div class="footer-titles">
+        <ul>
+          <li><a href="#">Get Help</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Social Media</a></li>
+        </ul>
+      </div>
+      <p class="inc-rights">Copyright © Winter 2021, Emre Isik, WEB322NCC</p>
+    </div>
+  </div>
+</body>
+
+</html>

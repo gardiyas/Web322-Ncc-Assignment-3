@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>BigFOOD - Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="register.css" />
+</head>
+
+<body>
+
+    <div class="container-header">
+        <div class="header">
+            <div class="logo">
+                <img src="images/thumb_logo.png" alt="logo image" onclick="location.href='/';" />
+            </div>
+            <div class="menu">
+                <div class="dropdown">
+                    <button class="dropbtn" id="set-radius"><a href="/">Home Page</a></button>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn" id="set-a"><a href="onthemenu.html">On the menu</a></button>
+                </div>
+
+                <div class="dropdown">
+                <button class="dropbtn">Pricing</button>
+                <div class="dropdown-content">
+                    <a href="#">Big Menu</a>
+                    <a href="#">Child Menu</a>
+                    <a href="#">Adult Menu</a>
+                </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn" id="set-a"><a href="register.html">Register</a></button>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn" id="set-radius-2"><a href="#">Contact Us</a></button>
+                    <div class="dropdown-content">
+                    </div>
+                </div>
+
+                <div class="account">
+                    <img src="images/user.png" alt="login image" onclick="location.href='login.html';" />
+                    <span class="tooltiptext">Login</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-user-info">
+    {{#if user}}
+    <ul>
+      <li>
+        <p>Logged in as {{FIRSTNAME}}{{LASTNAME}} -> </p>
+      </li>
+      {{#if CHECK}}
+      <li>
+        <p>Status: Admin</p>
+      </li>
+      {{else}}
+      <li>
+        <p>Status: User</p>
+      </li>
+      {{/if}}
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+    {{else}}
+    <ul>
+      <li>
+       <p>Status: Guest</p>
+      </li>
+    </ul>
+    {{/if}}
+  </div>
+
+
+    <div id="register-form">
+
+        <h1 style="text-align: center;">Register</h1>
+        {{#if errorMsg}}
+        <div>
+            <p style="text-align: center;">{{errorMsg}}</p>
+        </div>
+        {{/if}}
+        <form action="/register.html" method="post">
+
+            <label for="email"></label>
+            <input id="email" name="email" autocomplete="email" type="email" tabindex="2" placeholder="Email"
+                required /><br><br>
+
+            <label for="firstname"></label>
+            <input id="firstname" name="firstname" autocomplete="name" type="text" tabindex="1" placeholder="First Name"
+                required /><br><br>
+
+            <label for="lastname"></label>
+            <input id="lastname" name="lastname" autocomplete="name" type="text" tabindex="1" placeholder="Last Name"
+                required /><br><br>
+
+            <label for="psw"></label>
+            <input id="psw" name="psw" type="password" tabindex="2" placeholder="Password" minlength="6" maxlength="12"
+                required /><br><br>
+
+            <div class="bday">
+                <label for="birthday">Birthday</label><br><br>
+                <small>To sign up, you need to be at least 18.</a></small><br><br>
+                <div class="in1">
+                    <input list="months" name="mon" id="mon" placeholder="Month" required>
+                    <datalist id="months">
+                        <option value="Jan">
+                        <option value="Feb">
+                        <option value="Mar">
+                        <option value="Apr">
+                    </datalist>
+                </div><br>
+                <div class="in2">
+                    <input list="days" name="day" id="day" placeholder="Day" required>
+                    <datalist id="days">
+                        <option value="01">
+                        <option value="02">
+                        <option value="03">
+                        <option value="04">
+                    </datalist>
+                </div><br>
+                <div class="in3">
+                    <input list="years" name="year" id="year" placeholder="Year" required>
+                    <datalist id="years">
+                        <option value="1990">
+                        <option value="1991">
+                        <option value="1992">
+                        <option value="1993">
+                    </datalist>
+                </div><br>
+                <br><br>
+            </div>
+            <hr>
+
+            <small>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</small><br><br>
+
+            <div class="buttons">
+                <input type="submit" name="Submit" value="Register" tabindex="7" />
+                <input type="reset" name="Reset" value="Reset" tabindex="8" />
+
+                <br><br>
+                <input id="Button1" type="button" value="Login" onclick="location.href='login.html';" />
+            </div>
+        </form>
+    </div>
+
+    <div class="footer">
+    <div class="footer-banner">
+      <div class="footer-text">
+        <h3>BigFOOD</h3>
+        <p>BigFood Restaurant</p>
+      </div>
+
+      <div class="footer-titles">
+        <ul>
+          <li><a href="#">Get Help</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Social Media</a></li>
+        </ul>
+      </div>
+      <p class="inc-rights">Copyright © Winter 2021, Emre Isik, WEB322NCC</p>
+    </div>
+    </div>
+
+</body>
+
+</html>

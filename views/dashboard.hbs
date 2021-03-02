@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+
+<body>
+    {{#if CHECK}}
+    <h1 style="text-align:center">Welcome, Admin</h1>
+    <h2 style="text-align:center">BigFood Page</h2>
+    {{else}}
+    <h1 style="text-align:center">Welcome, BigFOOD User
+        <h1 style="text-align: center;">{{FIRSTNAME}}{{LASTNAME}}</h1>
+    </h1>    
+    <h2 style="text-align:center">Your Profile Card</h2>
+
+    <div class="card">
+        <img src="images/logo.png" alt="default profile image" style="width:100%">
+        <h1>{{FIRSTNAME}}{{LASTNAME}}</h1>
+        <p class="title">BigFOOD</p>
+        <div style="margin: 24px 0;">
+            <a href="#"><i class="fa fa-dribbble"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+        </div>
+        <p><button>Contact</button></p>
+    </div>
+    {{/if}}
+
+    <br><br>
+    <p style="text-align:center"><a href="/">Go to main page</a></p>
+    <p style="text-align:center"><a href="/logout">LOGOUT</a></p>
+
+
+    {{#if CHECK}}
+
+    <div class="add-room-grid">
+        <div class="add-room-only">
+            <div class="card">
+                <img src="images/logo.png" alt="default profile image" style="width:100%">
+                <h1>{{FIRSTNAME}}{{LASTNAME}}</h1>
+                <p class="title">BigFOOD</p>
+                <div style="margin: 24px 0;">
+                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                </div>
+                <p><button>Contact</button></p>
+            </div>
+        </div>         
+    {{/if}}
+</body>
+
+</html>
