@@ -17,7 +17,6 @@ const exphbs = require('express-handlebars');
 const url = require('url');
 var ensures = require('./public/ensure');  // defined ensureLogin functions
 const clientSessions = require("client-sessions");
-const Sequelize = require('sequelize');
 const bcrypt = require('bcryptjs');
 const fs = require("fs");
 const multer = require("multer");
@@ -54,42 +53,6 @@ const itemData = {
     address: ""
 }
 
-/* ********************* DATABASE INFORMATIONS *************************/
-
-var sequelize = new Sequelize('db9i6jmb7cnkdq', 'rgttdzkgrkibdo', '2684e4cdd8d0756de49f7714b043fa6feb35df8a01eb1cff1e8e3358e62862c9', {
-    host: 'ec2-52-202-66-191.compute-1.amazonaws.com',
-    dialect: 'postgres',
-    port: 5432,
-    dialectOptions: {
-        ssl: { rejectUnauthorized: false }
-    }
-});
-
-/* ********************* CREATING TABLE - WITH UNIQUE EMAIL *************************/
-
-var userTable = sequelize.define('Users', {
-    email: Sequelize.STRING,
-    fName: Sequelize.STRING,
-    lName: Sequelize.STRING,
-    psw: Sequelize.STRING,
-    bday: Sequelize.STRING
-},
-    {
-        indexes: [{
-            unique: true,
-            fields: ['email']
-        }]
-    });
-
-
-/* **************************** CREATING TABLE  ********************************/
-
-var itemTable = sequelize.define('Items', {
-    filename: Sequelize.STRING,
-    title: Sequelize.STRING,
-    price: Sequelize.STRING,
-    description: Sequelize.STRING,
-});
 
 /* **************************** FUNCTIONS  ********************************/
 
@@ -138,13 +101,14 @@ app.use(clientSessions({
 
 /* ***************************** PAGES and DETAILS  **********************************/
 
-
-
-app.get('/', function(req,res){
+app.get('/', (req, res) => {
     res.render('index', {
-        layout: false
+        user: req.session.user,
+        layout: false,
+        FIRSTNAME: user.fname + " ",
+        LASTNAME: user.lname,
+        CHECK: check()
     });
-    //res.sendFile(path.join(__dirname, 'listing.hbs'));
 });
 app.get('/register.html', (req, res) => {
     res.render('register', {
@@ -255,8 +219,7 @@ app.get("/dashboard", (req, res) => {
         res.render("dashboard", {
             data: data, 
             layout: false, 
-            user: req.session.user,
-            layout: false,
+            user: req.session.user,            
             FIRSTNAME: user.fname + " ",
             LASTNAME: user.lname,
             CHECK: check()
@@ -264,6 +227,4 @@ app.get("/dashboard", (req, res) => {
     });
 });
 
-sequelize.sync().then(() => {
-    app.listen(HTTP_PORT, onHttpStart);
-});
+app.listen(HTTP_PORT, onHttpStart);
