@@ -16,11 +16,10 @@ const app = express();
 const exphbs = require('express-handlebars');
 const url = require('url');
 var ensures = require('./public/ensure');  // defined ensureLogin functions
-const clientSessions = require("client-sessions");
 const bcrypt = require('bcryptjs');
 const fs = require("fs");
-const multer = require("multer");
-const PHOTODIRECTORY = "./public/images/";
+
+
 
 app.engine('.hbs', exphbs({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
@@ -32,27 +31,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-/* ************************ CONFIRMATION *******************************/
-
-const adminEmail = "admin@m.ca";
-
-const user = {
-    email: "",
-    password: "",
-    fname: "",
-    lname: ""
-};
-
-const itemData = {
-    id: "",
-    filename: "",
-    title: "",
-    price: "",
-    description: "",
-    city: "",
-    address: ""
-}
-
 
 /* **************************** FUNCTIONS  ********************************/
 
@@ -60,63 +38,21 @@ function onHttpStart() {
     console.log("Express http server listening on: " + HTTP_PORT);
 }
 
-function check() {
-    if (user.email == adminEmail) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-// make sure the photos folder exists
-// if not create it
-if (!fs.existsSync(PHOTODIRECTORY)) {
-    fs.mkdirSync(PHOTODIRECTORY);
-}
-
-// *****************************************************************************************
-
-const storage = multer.diskStorage({
-    destination: PHOTODIRECTORY,
-    filename: (req, file, cb) => {
-        var dt = Date.now();
-        cb(null, dt + path.extname(file.originalname));
-        console.log(dt);
-        console.log(file.originalname);
-    }
-});
-
-// tell multer to use the diskStorage function for naming files instead of the default.
-const upload = multer({ storage: storage });
-/* **************************** SESSION DETAILS  ********************************/
-
-
-app.use(clientSessions({
-    cookieName: "session", // this is the object name that will be added to 'req'
-    secret: "This-is-my-long-un-guessable-string", // this should be a long un-guessable string.
-    duration: 2 * 60 * 1000, // duration of the session in milliseconds (2 minutes)
-    activeDuration: 1000 * 60 // the session will be extended by this many ms each request (1 minute)
-}));
-
-
 /* ***************************** PAGES and DETAILS  **********************************/
 
-app.get('/', (req, res) => {
+app.get('/', function(req,res){
     res.render('index', {
-        user: req.session.user,
-        layout: false,
-        FIRSTNAME: user.fname + " ",
-        LASTNAME: user.lname,
-        CHECK: check()
+        layout: false
     });
+    //res.sendFile(path.join(__dirname, 'listing.hbs'));
 });
+
 app.get('/register.html', (req, res) => {
     res.render('register', {
         user: req.session.user,
         layout: false,
         FIRSTNAME: user.fname + " ",
-        LASTNAME: user.lname,
-        CHECK: check()
+        LASTNAME: user.lname,       
     });
 });
 
@@ -214,15 +150,12 @@ app.get("/logout", function (req, res) {
 app.get("/dashboard", (req, res) => {
     itemTable.findAll({
         order: ["id"]
-    }).then((data) => {
-        data = data.map(value => value.dataValues);
-        res.render("dashboard", {
-            data: data, 
+    }).then((data) => {       
+        res.render("dashboard", {           
             layout: false, 
             user: req.session.user,            
             FIRSTNAME: user.fname + " ",
-            LASTNAME: user.lname,
-            CHECK: check()
+            LASTNAME: user.lname,            
         });
     });
 });
