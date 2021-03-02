@@ -138,14 +138,13 @@ app.use(clientSessions({
 
 /* ***************************** PAGES and DETAILS  **********************************/
 
-app.get('/', (req, res) => {
+
+
+app.get('/', function(req,res){
     res.render('index', {
-        user: req.session.user,
-        layout: false,
-        FIRSTNAME: user.fname + " ",
-        LASTNAME: user.lname,
-        CHECK: check()
+        layout: false
     });
+    //res.sendFile(path.join(__dirname, 'listing.hbs'));
 });
 app.get('/register.html', (req, res) => {
     res.render('register', {
