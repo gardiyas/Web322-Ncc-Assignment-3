@@ -1,15 +1,25 @@
 {
   "name": "web322-assignment-3",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gardiyas/Web322-Ncc-Assignment-3.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gardiyas/Web322-Ncc-Assignment-3/issues"
+  },
+  "homepage": "https://github.com/gardiyas/Web322-Ncc-Assignment-3#readme",
+  "description": ""
 }
