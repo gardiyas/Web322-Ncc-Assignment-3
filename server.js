@@ -42,8 +42,7 @@ const user = {
 /* ********************* DATABASE INFORMATIONS *************************/
 var sequelize = new Sequelize('db9i6jmb7cnkdq', 'rgttdzkgrkibdo', '2684e4cdd8d0756de49f7714b043fa6feb35df8a01eb1cff1e8e3358e62862c9', {
     host: 'ec2-52-202-66-191.compute-1.amazonaws.com',
-    dialect: 'postgres',
-    port: 5432,
+    dialect: 'postgres',    
     dialectOptions: {
         ssl: { rejectUnauthorized: false }
     }
