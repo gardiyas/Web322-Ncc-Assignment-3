@@ -186,4 +186,6 @@ app.get("/dashboard", (req, res) => {
     
 });
 
-app.listen(HTTP_PORT, onHttpStart);
+sequelize.sync().then(() => {
+    app.listen(HTTP_PORT, onHttpStart);
+});
