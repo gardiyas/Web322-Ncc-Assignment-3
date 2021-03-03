@@ -96,8 +96,7 @@ function check() {
 /* ***************************** PAGES and DETAILS  **********************************/
 
 app.get('/', (req, res) => {
-    res.render('index', {   
-        user: req.session.user,             
+    res.render('index', {         
         layout: false,
     });
 });
