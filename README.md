@@ -10,4 +10,4 @@ Course: WEB322-NCC
 
 ## Project URLs
 GitHub Repository: https://github.com/gardiyas/Web322-Ncc-Assignment-3
-Heroku URL: https://<app_name>.herokuapp.com/
+Heroku URL: https://web322-ncc-assignment-3.herokuapp.com/
