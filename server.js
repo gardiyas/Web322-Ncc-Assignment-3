@@ -97,13 +97,13 @@ function check() {
 
 app.get('/', (req, res) => {
     res.render('index', {   
-        user: req.user,             
+        user: req.session.user,             
         layout: false,
     });
 });
 app.get('/register.html', (req, res) => {
     res.render('register', {   
-        user: req.user,          
+        user: req.session.user,           
         layout: false,  
         CHECK: check()            
     });
@@ -111,7 +111,7 @@ app.get('/register.html', (req, res) => {
 
 app.get('/onthemenu.html', function(req,res){
     res.render('onthemenu', { 
-        user: req.user,      
+        user: req.session.user,        
         layout: false,
         CHECK: check()
     });
@@ -120,7 +120,7 @@ app.get('/onthemenu.html', function(req,res){
 
 app.get('/login.html', function(req,res){
     res.render('login', { 
-        user: req.user,        
+        user: req.session.user,         
         layout: false,
         CHECK: check()
     });
