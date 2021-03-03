@@ -17,6 +17,7 @@ const exphbs = require('express-handlebars');
 const url = require('url');
 const bcrypt = require('bcryptjs');
 const Sequelize = require('sequelize');
+var ensures = require('./public/ensure'); 
 
 app.engine('.hbs', exphbs({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
