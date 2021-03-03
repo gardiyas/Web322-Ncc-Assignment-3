@@ -39,21 +39,20 @@ const user = {
     lname: ""
 };
 
-/* ********************* DATABASE INFORMATIONS *************************/
-var sequelize = new Sequelize('db9i6jmb7cnkdq', 'rgttdzkgrkibdo', '2684e4cdd8d0756de49f7714b043fa6feb35df8a01eb1cff1e8e3358e62862c9', {   
+var sequelize = new Sequelize('db9i6jmb7cnkdq', 'rgttdzkgrkibdo', '2684e4cdd8d0756de49f7714b043fa6feb35df8a01eb1cff1e8e3358e62862c9', {
+    host: 'ec2-52-202-66-191.compute-1.amazonaws.com',
     dialect: 'postgres',
-    port: 8080,    
+    port: 5432,
     dialectOptions: {
         ssl: { rejectUnauthorized: false }
     }
 });
-/* ********************* CREATING TABLE - WITH UNIQUE EMAIL *************************/
 
 var userTable = sequelize.define('Users', {
     email: Sequelize.STRING,
     fName: Sequelize.STRING,
     lName: Sequelize.STRING,
-    psw: Sequelize.STRING,    
+    psw: Sequelize.STRING   
 });
 /* **************************** CREATING TABLE  ********************************/
 var itemTable = sequelize.define('Items', {
@@ -66,7 +65,8 @@ var itemTable = sequelize.define('Items', {
 /* ***************************** PAGES and DETAILS  **********************************/
 
 app.get('/', (req, res) => {
-    res.render('index', {        
+    res.render('index', {  
+        user: req.user,      
         layout: false,
     });
 });
@@ -79,6 +79,7 @@ app.get('/register.html', (req, res) => {
 
 app.get('/onthemenu.html', function(req,res){
     res.render('onthemenu', {
+        user: req.user,
         layout: false
     });
     //res.sendFile(path.join(__dirname, 'listing.hbs'));
