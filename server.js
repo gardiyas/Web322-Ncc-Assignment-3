@@ -15,7 +15,6 @@ const bodyParser = require('body-parser');
 const app = express();
 const exphbs = require('express-handlebars');
 const url = require('url');
-const Sequelize = require('sequelize');
 const bcrypt = require('bcryptjs');
 
 app.engine('.hbs', exphbs({ extname: '.hbs' }));
@@ -38,30 +37,6 @@ const user = {
     fname: "",
     lname: ""
 };
-
-var sequelize = new Sequelize('db9i6jmb7cnkdq', 'rgttdzkgrkibdo', '2684e4cdd8d0756de49f7714b043fa6feb35df8a01eb1cff1e8e3358e62862c9', {
-    host: 'ec2-52-202-66-191.compute-1.amazonaws.com',
-    dialect: 'postgres',
-    port: 5432,
-    dialectOptions: {
-        ssl: { rejectUnauthorized: false }
-    }
-});
-
-var userTable = sequelize.define('Users', {
-    email: Sequelize.STRING,
-    fName: Sequelize.STRING,
-    lName: Sequelize.STRING,
-    psw: Sequelize.STRING   
-});
-/* **************************** CREATING TABLE  ********************************/
-var itemTable = sequelize.define('Items', {
-    filename: Sequelize.STRING,
-    title: Sequelize.STRING,
-    price: Sequelize.STRING,
-    description: Sequelize.STRING    
-});
-
 /* ***************************** PAGES and DETAILS  **********************************/
 
 app.get('/', (req, res) => {
@@ -99,90 +74,48 @@ app.get("/logout", function (req, res) {
 
 app.post("/register.html", (req, res) => {  
 
-    bcrypt.hash(req.body.psw, 10).then(hash => {
+    if (req.body.password === user.psw) {
 
-        console.log(hash);  // to print hashed password on console to test
-
-        userTable.create({
-            email: req.body.email,
-            fName: req.body.firstname,
-            lName: req.body.lastname,
-            psw: hash,
-            bday: req.body.mon + "-" + req.body.day + "-" + req.body.year
-        }).then(() => {
-            console.log("successfully created a new user");
-            res.render("thanks", { ifRegister: true, layout: false });
-        }).catch(() => {
-            console.log("ERROR: Same email used!");
-            res.render("register", { errorMsg: "This email account is already registered!", layout: false });
-        });
-    })
-        .catch(err => {
-            console.log(err); // Show any errors that occurred during the process
-        });  
+        // Add the user on the session and redirect them to the dashboard page.
+        req.user = {
+            email: user.email,
+            password: user.password
+        };
+        res.redirect("/dashboard");
+    } else {
+        res.render("login", { errorMsg: "invalid username and/or password!", layout: false });
+    }  
      
 });
 
-app.post("/login.html", (req, res) => {       
-        
-    userTable.findAll({
-        attributes: ['email', 'psw', 'fName', 'lName'],
-        where: {
-            email: req.body.email
-        }
-    }).then(function (data) {
-        data = data.map(value => value.dataValues);
+app.post("/login.html", (req, res) => {   
+    if (req.body.password === user.psw) {
 
-        console.log("User info from data:");
-        console.log(data[0].email);
-        console.log(data[0].psw);
-
-        // Assign to use on different pages throughout session duration
-        user.email = data[0].email;
-        user.password = data[0].psw;
-        user.fname = data[0].fName;
-        user.lname = data[0].lName;
-
-        // console.log(req.body.email);
-        // console.log(req.body.psw);   
-
-        if (req.body.email === "" || req.body.psw === "") {
-            return res.render("login", { errorMsg: "Missing credentials.", layout: false });
-        }
-
-        bcrypt.compare(req.body.psw, user.password).then((result) => {
-            if (req.body.email === user.email && result === true) {
-
-                // Add the user on the session and redirect them to the dashboard page.
-                req.user = {
-                    email: user.email,
-                    password: user.password
-                };
-                res.redirect("/dashboard");
-            } else {
-                res.render("login", { errorMsg: "invalid username and/or password!", layout: false });
-            }
-        });
-
-    }).catch(function (e) {
-        console.log("ERROR: Undefined email value!");
+        // Add the user on the session and redirect them to the dashboard page.
+        req.user = {
+            email: user.email,
+            password: user.password
+        };
+        res.redirect("/dashboard");
+    } else {
         res.render("login", { errorMsg: "invalid username and/or password!", layout: false });
-    });       
+    }  
+        
+     
 });
 
-app.get("/dashboard", (req, res) => {
-    itemTable.findAll({
-        order: ["id"]
-    }).then((data) => {
-        data = data.map(value => value.dataValues);
-        res.render("dashboard", {
-            data: data, 
-            layout: false, 
-            user: req.user,            
-            FIRSTNAME: user.fname + " ",
-            LASTNAME: user.lname,            
-        });
-    });      
+
+app.get("/dashboard", (req, res) => {    
+    
+        res.render('dashboard', {            
+            layout: false,
+            name: req.body.firstname + " " + req.body.lastname,
+            email: req.body.email,
+            psw: req.body.psw,
+            mon: req.body.mon,
+            day: req.body.day,
+            year: req.body.year          
+    });       
     
 });
 
