@@ -40,8 +40,7 @@ const user = {
 };
 
 /* ********************* DATABASE INFORMATIONS *************************/
-var sequelize = new Sequelize('db9i6jmb7cnkdq', 'rgttdzkgrkibdo', '2684e4cdd8d0756de49f7714b043fa6feb35df8a01eb1cff1e8e3358e62862c9', {
-    host: 'ec2-52-202-66-191.compute-1.amazonaws.com',
+var sequelize = new Sequelize('db9i6jmb7cnkdq', 'rgttdzkgrkibdo', '2684e4cdd8d0756de49f7714b043fa6feb35df8a01eb1cff1e8e3358e62862c9', {   
     dialect: 'postgres',    
     dialectOptions: {
         ssl: { rejectUnauthorized: false }
@@ -53,8 +52,7 @@ var userTable = sequelize.define('Users', {
     email: Sequelize.STRING,
     fName: Sequelize.STRING,
     lName: Sequelize.STRING,
-    psw: Sequelize.STRING,
-    bday: Sequelize.STRING
+    psw: Sequelize.STRING,    
 });
 /* **************************** CREATING TABLE  ********************************/
 var itemTable = sequelize.define('Items', {
