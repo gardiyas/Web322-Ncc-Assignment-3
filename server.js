@@ -95,15 +95,15 @@ function check() {
 
 /* ***************************** PAGES and DETAILS  **********************************/
 
-app.get('/index.html', (req, res) => {
+app.get('/', (req, res) => {
     res.render('index', {   
-        user: req.session.user,             
+        user: session.user,             
         layout: false,
     });
 });
 app.get('/register.html', (req, res) => {
     res.render('register', {   
-        user: req.session.user,           
+        user: session.user,           
         layout: false,  
         CHECK: check()            
     });
@@ -111,7 +111,7 @@ app.get('/register.html', (req, res) => {
 
 app.get('/onthemenu.html', function(req,res){
     res.render('onthemenu', { 
-        user: req.session.user,        
+        user: session.user,        
         layout: false,
         CHECK: check()
     });
@@ -120,7 +120,7 @@ app.get('/onthemenu.html', function(req,res){
 
 app.get('/login.html', function(req,res){
     res.render('login', { 
-        user: req.session.user,         
+       user: session.user,         
         layout: false,
         CHECK: check()
     });
