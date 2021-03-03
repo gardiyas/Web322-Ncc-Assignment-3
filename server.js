@@ -14,8 +14,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
 const exphbs = require('express-handlebars');
-const url = require('url');
-const bcrypt = require('bcryptjs');
+
 
 app.engine('.hbs', exphbs({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
@@ -95,10 +94,8 @@ app.post("/login.html", (req, res) => {
 
     if (req.body.email === "" || req.body.psw === "") {
         return res.render("login", { errorMsg: "Missing credentials.", layout: false });
-    }
-
-    bcrypt.compare(req.body.psw, user.password).then((result) => {
-        if (req.body.password !== user.password && result === true) {
+    }   
+        if (req.body.password !== user.password) {
 
             // Add the user on the session and redirect them to the dashboard page.
             req.user = {
@@ -109,7 +106,7 @@ app.post("/login.html", (req, res) => {
         } else {
             res.redirect("/dashboard");
         }
-    });
+    
      
 });
 
