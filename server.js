@@ -43,15 +43,6 @@ const user = {
     lname: ""
 };
 
-const itemData = {
-    id: "",
-    filename: "",
-    title: "",
-    price: "",
-    description: "",
-    city: "",
-    address: ""
-}
 
 var sequelize = new Sequelize('db9i6jmb7cnkdq', 'rgttdzkgrkibdo', '2684e4cdd8d0756de49f7714b043fa6feb35df8a01eb1cff1e8e3358e62862c9', {
     host: 'ec2-52-202-66-191.compute-1.amazonaws.com',
@@ -60,12 +51,6 @@ var sequelize = new Sequelize('db9i6jmb7cnkdq', 'rgttdzkgrkibdo', '2684e4cdd8d07
     dialectOptions: {
         ssl: { rejectUnauthorized: false }
     }
-},
-{
-    indexes: [{
-        unique: true,
-        fields: ['email']
-    }]
 });
 
 var userTable = sequelize.define('Users', {
@@ -74,6 +59,12 @@ var userTable = sequelize.define('Users', {
     lName: Sequelize.STRING,
     psw: Sequelize.STRING,
     bday: Sequelize.STRING
+},
+{
+    indexes: [{
+        unique: true,
+        fields: ['email']
+    }]
 });
 
 var itemTable = sequelize.define('Items', {
@@ -85,35 +76,25 @@ var itemTable = sequelize.define('Items', {
     address: Sequelize.STRING
 });
 
-function check() {
-    if (user.email == adminEmail) {
-        return true;
-    } else {
-        return false;
-    }
-}
 
 /* ***************************** PAGES and DETAILS  **********************************/
 
 app.get('/', (req, res) => {
-    res.render('index', {   
-        user: req.session.user,         
+    res.render('index', {                
         layout: false,
     });
 });
 app.get('/register.html', (req, res) => {
     res.render('register', {   
         user: req.session.user,         
-        layout: false,  
-        CHECK: check()            
+        layout: false,                     
     });
 });
 
 app.get('/onthemenu.html', function(req,res){
     res.render('onthemenu', { 
         user: req.session.user,        
-        layout: false,
-        CHECK: check()
+        layout: false,        
     });
     //res.sendFile(path.join(__dirname, 'listing.hbs'));
 });
@@ -121,8 +102,7 @@ app.get('/onthemenu.html', function(req,res){
 app.get('/login.html', function(req,res){
     res.render('login', { 
         user: req.session.user,         
-        layout: false,
-        CHECK: check()
+        layout: false,        
     });
     //res.sendFile(path.join(__dirname, 'listing.hbs'));
 });
@@ -215,8 +195,7 @@ app.get("/dashboard", (req, res) => {
             layout: false, 
             user: req.session.user,            
             FIRSTNAME: user.fname + " ",
-            LASTNAME: user.lname,
-            CHECK: check()
+            LASTNAME: user.lname,            
         });
     });      
     
