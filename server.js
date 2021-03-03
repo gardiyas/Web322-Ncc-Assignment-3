@@ -31,38 +31,28 @@ function onHttpStart() {
     console.log("Express http server listening on: " + HTTP_PORT);
 }
 
-const user = {
-    email: "",
-    password: "",
-    fname: "",
-    lname: ""
-};
 /* ***************************** PAGES and DETAILS  **********************************/
 
 app.get('/', (req, res) => {
-    res.render('index', {  
-        user: req.user,      
+    res.render('index', {                
         layout: false,
     });
 });
 app.get('/register.html', (req, res) => {
-    res.render('register', {  
-        user: req.user,      
+    res.render('register', {            
         layout: false,              
     });
 });
 
 app.get('/onthemenu.html', function(req,res){
-    res.render('onthemenu', {
-        user: req.user,
+    res.render('onthemenu', {      
         layout: false
     });
     //res.sendFile(path.join(__dirname, 'listing.hbs'));
 });
 
 app.get('/login.html', function(req,res){
-    res.render('login', {
-        user: req.user,
+    res.render('login', {        
         layout: false
     });
     //res.sendFile(path.join(__dirname, 'listing.hbs'));
@@ -77,10 +67,7 @@ app.post("/register.html", (req, res) => {
     if (req.body.password === user.psw) {
 
         // Add the user on the session and redirect them to the dashboard page.
-        req.user = {
-            email: user.email,
-            password: user.password
-        };
+        
         res.redirect("/dashboard");
     } else {
         res.render("login", { errorMsg: "invalid username and/or password!", layout: false });
